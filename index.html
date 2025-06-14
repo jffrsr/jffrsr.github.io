@@ -71,7 +71,7 @@
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 2;
+      z-index: 3; /* Aumentado para garantir visibilidade */
     }
     .mouse::before {
       content: '';
@@ -160,6 +160,11 @@
     footer {
       background-color: #162020;
     }
+    #error {
+      color: #f87171;
+      text-align: center;
+      padding: 20px;
+    }
   </style>
 </head>
 <body class="scroll-smooth">
@@ -227,9 +232,9 @@
             <div className="navbar-brand">
               <img src="https://via.placeholder.com/150x50?text=Logo" alt="Logo" className="navbar-item" style={{ height: '40px' }} />
               <button className={`navbar-burger ${isOpen ? 'is-active' : ''}`} onClick={() => setIsOpen(!isOpen)}>
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <span></span>
+                <span></span>
+                <span></span>
               </button>
             </div>
             <div className={`navbar-menu ${isOpen ? 'is-active' : ''} has-background-success-dark`}>
@@ -245,52 +250,54 @@
     }
 
     function SolarCalculator() {
-      const [kWhitel, setKWhitel] = useState('');
+      const [kWh, setKWh] = useState('');
       const [result, setResult] = useState(null);
 
       const calculate = () => {
         try {
-          const kWhValue WhitelValue = parseFloat(kWhitel);
-          if (kWhitelValue Whitel > 0) {
-            const kWkWhitel = (WhitelValue / WhiteValue / 133);
-            const cost = (kWkWhitel * 50005). WhiteltoFixed(2);
-            setResult({ kWkWhitel, cost Whitel});
-          });
-        } else {
-            alert('Insira ao valor válido maior que zero!');
+          const kWhValue = parseFloat(kWh);
+          if (kWhValue > 0) {
+            const kWp = (kWhValue / 130).toFixed(2);
+            const cost = (kWp * 5000).toFixed(2);
+            setResult({ kWp, cost });
           } else {
             alert('Insira um valor válido maior que zero!');
           }
         } catch (error) {
-          console.error('Erro na calculadora no site:', error);
-          console.error('Erro no site:', error);
-          alert('Ocorreu ao erro ao calcular no site. Tente novamente.');
+          console.error('Erro na calculadora:', error);
+          alert('Ocorreu um erro ao calcular. Tente novamente.');
         }
-      }
+      };
 
       return (
         <div className="section">
           <div className="container">
-            <h2 class="section-title has-text-centered is-size-3 has-text-green">Calcule sua energia solar</h2>
-            <div class="card">
-              <div class="card-content">
-                <div class="field">
-                  <label class="label">Consumo mensal (kWhitel)</label>
-                  <div class="control">
+            <h2 className="title is-size-3 has-text-centered has-text-green fade-in">Calcule Sua Economia</h2>
+            <div className="card">
+              <div className="card-content">
+                <div className="field">
+                  <label className="label">Consumo mensal (kWh)</label>
+                  <div className="control">
                     <input
                       type="number"
-                      value={kWhitel}
-                      onChange={e => setKWhitel(e.target.value)}
-                      placeholder="Ex.: 120"
-                      class="input"
+                      value={kWh}
+                      onChange={(e) => setKWh(e.target.value)}
+                      placeholder="Ex.: 300"
+                      className="input"
                     />
                   </div>
                 </div>
-                <div class="button is-primary is-success is-fullwidth">Calcular</button>
+                <div className="field">
+                  <div className="control">
+                    <button onClick={calculate} className="button is-success is-fullwidth">
+                      Calcular
+                    </button>
+                  </div>
+                </div>
                 {result && (
-                  <div class="content mt-4">
-                    <p>Potência necessária: {result.kWkWhitel} kWkWhitel</p>
-                    <p>resultado estimado: R${result.cost}</p>
+                  <div className="content mt-4">
+                    <p>Potência necessária: {result.kWp} kWp</p>
+                    <p>Custo estimado: R${result.cost}</p>
                   </div>
                 )}
               </div>
@@ -315,52 +322,50 @@
               1024: { slidesPerView: 3 }
             }
           });
+          console.log('Swiper inicializado com sucesso');
         } catch (error) {
-          console.error('Erro ao inicializar o Swiper:', error);
-          console.error('Erro no Swiper:', error);
+          console.error('Erro ao inicializar Swiper:', error);
         }
 
-        // Randomizar imagem de fundo
         const randomImage = images[Math.floor(Math.random() * images.length)];
-        console.log('Imagem de fundo selecionada:', randomImage); // Log para depuração
-        forDebugging
+        console.log('Imagem de fundo selecionada:', randomImage);
         setBgImage(randomImage);
-      }, []); 
+      }, []);
 
       return (
         <>
           <Header />
-          <section id="home" className="image-bg">
-            <div class="hero-body">
+          <section id="home" className="image-bg" style={{ backgroundImage: `url(${bgImage})` }}>
+            <div className="hero-body">
               <div className="container has-text-centered">
                 <h1 className="title is-2 is-size-4-mobile has-text-white has-text-weight-bold text-shadow-lg fade-in">Energia Solar para o Futuro</h1>
-                <p class="subtitle is-4 is-size-6-mobile has-text-white text-shadow-md mb-3">Economize com energia limpa e sustentável!</p>
-                <a href="#contato" class="button is-primary is-warning is-medium">Fale Conosco</a>
+                <p className="subtitle is-4 is-size-6-mobile has-text-white text-shadow-md mb-5">Economize com energia limpa e sustentável.</p>
+                <a href="#contato" className="button is-warning is-medium">Fale Conosco</a>
               </div>
-              <div class="mouse"></div>
             </div>
+            <div className="mouse"></div>
           </section>
           <SolarCalculator />
-          <section id="sobre" class="section">
+          <section id="sobre" className="section">
             <div className="container">
               <h2 className="title is-size-3 has-text-centered has-text-green fade-in">Sobre Nós</h2>
-              <div class="columns">
-                <div class="column is-6">
-                  <p class="is-size-5">Somos líderes em energia solar, oferecendo soluções sustentáveis desde 2010. Nossa missão é tornar a energia limpa acessível.</p>
+              <div className="columns">
+                <div className="column is-6">
+                  <p className="is-size-5">Somos líderes em energia solar, oferecendo soluções sustentáveis desde 2010. Nossa missão é tornar a energia limpa acessível.</p>
                 </div>
                 <div className="column is-6">
                   <div className="columns">
-                    <div class="column">
-                      <div class="card">
-                        <div class="card-content has-text-centered">
-                          <p className="title is-5 has-text-weight-bold has-text-warning">500+</p>
+                    <div className="column">
+                      <div className="card">
+                        <div className="card-content has-text-centered">
+                          <p className="title is-size-5 has-text-weight-bold has-text-warning">500+</p>
                           <p>Projetos Concluídos</p>
                         </div>
                       </div>
                     </div>
-                    <div class="column">
-                      <div class="card">
-                        <div className="content has-text-centered">
+                    <div className="column">
+                      <div className="card">
+                        <div className="card-content has-text-centered">
                           <p className="title is-size-5 has-text-weight-bold has-text-warning">10 MW</p>
                           <p>Potência Instalada</p>
                         </div>
@@ -371,17 +376,17 @@
               </div>
             </div>
           </section>
-          <section id="direitos" class="section">
+          <section id="servicos" className="section">
             <div className="container">
-              <h2 className="title is-size-3 has-text-centered green-text-green fade-in">Nossos Serviços</h2>
+              <h2 className="title is-size-3 has-text-centered has-text-green fade-in">Nossos Serviços</h2>
               <div className="columns">
                 {['Instalação', 'Manutenção', 'Consultoria'].map((servico) => (
-                  <div class="key={servico} is-column">
-                    <div class="card">
-                      <div class="content-content">
-                        <h3 class="title-size-5 is-size-title has-text-weight-bold-green">{servico-green</h3>}
+                  <div key={servico} className="column">
+                    <div className="card">
+                      <div className="card-content has-text-centered">
+                        <h3 className="title is-size-5 has-text-weight-bold has-text-green">{servico}</h3>
                         <p className="is-size-6">Serviço de alta qualidade para sistemas solares.</p>
-                        <p><a href="#contato" class="has-text-warning">Saiba mais.</a></p>
+                        <p><a href="#contato" className="has-text-warning">Saiba mais</a></p>
                       </div>
                     </div>
                   </div>
@@ -389,161 +394,164 @@
               </div>
             </div>
           </section>
-          <section id="marcas" class="section">
+          <section id="marcas" className="section">
             <div className="container">
-              <h2 className="title is-size-3 has-text-centered green-text-green fade-in">Nossas Marcas</h2>
-              <div class="columns">
+              <h2 className="title is-size-3 has-text-centered has-text-green fade-in">Nossas Marcas</h2>
+              <div className="columns">
                 {['Jinko Solar', 'Canadian Solar', 'Trina Solar', 'Longi'].map((marca) => (
-                  <div key={marca} class="column">
-                    <div class="card-content has-text-centered">
-                      <img src="image is-64x64 mx-auto mb-auto" alt={marca} src="https://via.placeholder.com/100?text=Marca" />
-                      <p className="is-size-6">{marca}</p>
+                  <div key={marca} className="column">
+                    <div className="card">
+                      <div className="card-content has-text-centered">
+                        <img src="https://via.placeholder.com/100?text=Marca" alt={marca} className="image is-64x64 mx-auto mb-3" />
+                        <p className="is-size-6">{marca}</p>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <section id="testemunhos" class="section">
-              <div className="container">
-                <h2 className="title is-size-3 has-text-centered has-text-green fade-in">O que dizem nossos clientes faz</h3>
-                <div className="swiper">
-                  <div className="swiper-wrapper">
-                    {mockTestimonials.map((t, i) => (
-                      <div key={i} class="swiper-slide">
-                        <div class="card">
-                          <img src={t.foto} alt={t.nome} class="image is-64x64 is-rounded mx-auto mb-auto rounded-circle />
-                          <p class="content is-italic">"{t.depoimento}"</p>
-                          <p class="title-size-6 has-text-right has-text-weight-bold">{t.nome}, {t.cidade}</p>
-                          <p className="is-size-6 has-text-weight-bold">{t.nome}, {t.cidade}</p>
-                          </div>
+          </section>
+          <section id="testemunhos" className="section">
+            <div className="container">
+              <h2 className="title is-size-3 has-text-centered has-text-green fade-in">O que dizem nossos clientes</h2>
+              <div className="swiper">
+                <div className="swiper-wrapper">
+                  {mockTestimonials.map((t, i) => (
+                    <div key={i} className="swiper-slide">
+                      <div className="card">
+                        <div className="card-content">
+                          <img src={t.foto} alt={t.nome} className="image is-64x64 is-rounded mx-auto mb-3" />
+                          <p className="content is-italic">"{t.depoimento}"</p>
+                          <p className="is-size-6 has-text-right has-text-weight-bold">{t.nome}, {t.cidade}</p>
                         </div>
                       </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="galeria" className="section">
+            <div className="container">
+              <h2 className="title is-size-3 has-text-centered has-text-green fade-in">Galeria de Projetos</h2>
+              <div className="columns">
+                {['Residência SP', 'Fazenda MG', 'Empresa RJ'].map((projeto) => (
+                  <div key={projeto} className="column">
+                    <div className="card">
+                      <div className="card-image">
+                        <figure className="image is-3by2">
+                          <img src="https://via.placeholder.com/300x200?text=Projeto" alt={projeto} />
+                        </figure>
+                      </div>
+                      <div className="card-content">
+                        <p className="is-size-6 has-text-centered">{projeto}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+          <section id="financiamento" className="section">
+            <div className="container">
+              <h2 className="title is-size-3 has-text-centered has-text-green fade-in">Financiamento</h2>
+              <p className="subtitle is-size-5 has-text-centered mb-4">Oferecemos parcerias com bancos para facilitar sua instalação solar.</p>
+              <div className="columns">
+                {['Banco do Brasil', 'Santander', 'Caixa'].map((banco) => (
+                  <div key={banco} className="column">
+                    <div className="card">
+                      <div className="card-content has-text-centered">
+                        <img src="https://via.placeholder.com/100?text=Banco" alt={banco} className="image is-64x64 mx-auto mb-3" />
+                        <p className="is-size-6">{banco}</p>
+                        <p className="is-size-7">Taxa: 1,2% a.m.</p>
+                        <p><a href="#" className="has-text-warning">Saiba mais</a></p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+          <section id="contato" className="section">
+            <div className="container">
+              <h2 className="title is-size-3 has-text-centered has-text-green fade-in">Contato</h2>
+              <div className="columns">
+                <div className="column is-6">
+                  <div className="card">
+                    <div className="card-content">
+                      <div className="field">
+                        <label className="label">Nome</label>
+                        <div className="control">
+                          <input className="input" type="text" placeholder="Nome" />
+                        </div>
+                      </div>
+                      <div className="field">
+                        <label className="label">Email</label>
+                        <div className="control">
+                          <input className="input" type="email" placeholder="Email" />
+                        </div>
+                      </div>
+                      <div className="field">
+                        <label className="label">Telefone</label>
+                        <div className="control">
+                          <input className="input" type="tel" placeholder="Telefone" />
+                        </div>
+                      </div>
+                      <div className="field">
+                        <label className="label">Mensagem</label>
+                        <div className="control">
+                          <textarea className="textarea" placeholder="Mensagem" rows="4"></textarea>
+                        </div>
+                      </div>
+                      <div className="field">
+                        <div className="control">
+                          <button type="button" className="button is-success is-fullwidth">Enviar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="column is-6">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.123456789!2d-46.633308!3d-23.550520!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59a8c0c!2sSão%20Paulo%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v1631234567890"
+                    className="is-fullwidth"
+                    style={{ height: '256px', borderRadius: '8px' }}
+                    allowFullScreen=""
+                    loading="lazy"
+                  ></iframe>
+                  <p className="mt-4 is-size-6">Endereço: Av. Solar, 123, São Paulo, SP</p>
+                  <p className="is-size-6">Email: contato@suaempresa.com</p>
+                  <p className="is-size-6">Telefone: (11) 99999-9999</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <footer className="footer">
+            <div className="container">
+              <div className="columns">
+                <div className="column is-4">
+                  <h3 className="title is-5 has-text-white">Eco Solares</h3>
+                  <p className="is-size-6 has-text-grey-lighter">© 2025 Todos os direitos reservados.</p>
+                </div>
+                <div className="column is-4">
+                  <h3 className="title is-5 has-text-white">Links Rápidos</h3>
+                  <ul>
+                    {['Home', 'Sobre', 'Serviços', 'Contato'].map((item) => (
+                      <li key={item}><a href={`#${item.toLowerCase()}`} className="has-text-grey-lighter">{item}</a></li>
                     ))}
-                  </div>
+                  </ul>
+                </div>
+                <div className="column is-4">
+                  <h3 className="title is-5 has-text-white">Contato</h3>
+                  <p className="is-size-6 has-text-grey-lighter">Email: contato@suaempresa.com</p>
+                  <p className="is-size-6 has-text-grey-lighter">Telefone: (11) 99999-9999</p>
+                  <p className="is-size-6 has-text-grey-lighter">
+                    Redes: <a href="#" className="has-text-warning">Instagram</a> | <a href="#" className="has-text-warning">WhatsApp</a>
+                  </p>
                 </div>
               </div>
-            </section>
-            <section id="galeria" class="section">
-              <div className="contato">
-                <h2 className="title-size-3 is-size-3 has-text-centered has-text-green fade-in">Galeria de Projetos</h2>
-                <div className="columns">
-                  {['Residência SP', 'Fazenda Residencial MG', 'Empresa Residencial RJ'].map((projeto) => (
-                    <div key={projeto} class="column">
-                      <div class="card">
-                        <div class="card-image">
-                          <figure class="image is-3by2">
-                            <img src="https://via.placeholder.com/300x200?text=Projeto" alt={projeto} />
-                          </figure>
-                        </div>
-                        <div class="card-content">
-                          <p className="is-size-6 has-text-centered">{projeto}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-            <section id="financiamento" class="section">
-              <div className="container">
-                <h2 className="title is-size-3 has-text-centered has-text-green fade-in">Financiamento</h2>
-                <p class="subtitle is-size-5 has-text-centered mb-4">Oferecemos parcerias com bancos para facilitar sua instalação solar.</p>
-                <div className="columns">
-                  {['Banco do Brasil', 'Santander', 'Caixa'].map((banco) => (
-                    <div key={banco} class="column">
-                      <div class="card">
-                        <div class="card-content has-text-centered">
-                          <img src="https://via.placeholder.com/100?text=Banco" alt={banco} class="image is-64x64 mx-auto mb-3" />
-                          <p className="is-size-6">{banco}</p>
-                          <p className="is-size-7">Taxa: 1,2% a.m.</p>
-                          <p><a href="#" class="has-text-warning">Saiba mais</a></p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-            <section id="contato" class="section">
-              <div className="container">
-                <h2 className="title is-size-3 has-text-centered has-text-green fade-in">Contato</h2>
-                <div className="columns">
-                  <div class="column is-6">
-                    <div class="card">
-                      <div class="card-content">
-                        <div class="field">
-                          <label class="label">Nome</label>
-                          <div class="control">
-                            <input class="input" type="text" placeholder="Nome" />
-                          </div>
-                        </div>
-                        <div class="field">
-                          <label class="label">Email</label>
-                          <div class="control">
-                            <input class="input" type="email" placeholder="Email" />
-                          </div>
-                        </div>
-                        <div class="field">
-                          <label class="label">Telefone</label>
-                          <div class="control">
-                            <input class="input" type="tel" placeholder="Telefone" />
-                          </div>
-                        </div>
-                        <div class="field">
-                          <label class="label">Mensagem</label>
-                          <div class="control">
-                            <textarea class="textarea" placeholder="Mensagem" rows="4"></textarea>
-                          </div>
-                        </div>
-                        <div class="field">
-                          <div class="control">
-                            <button type="button" class="button is-success is-fullwidth">Enviar</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="column is-6">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.123456789!2d-46.633308!3d-23.550520!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59a8c0c!2sSão%20Paulo%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v1631234567890"
-                      class="is-fullwidth"
-                      style={{ height: '256px', borderRadius: '8px' }}
-                      allowFullScreen=""
-                      loading="lazy"
-                    ></iframe>
-                    <p class="mt-4 is-size-6">Endereço: Av. Solar, 123, São Paulo, SP</p>
-                    <p class="is-size-6">Email: contato@suaempresa.com</p>
-                    <p class="is-size-6">Telefone: (11) 99999-9999</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <footer class="footer">
-              <div className="container">
-                <div className="columns">
-                  <div class="column is-4">
-                    <h3 class="title is-5 has-text-white">Eco Solares</h3>
-                    <p class="is-size-6 has-text-grey-lighter">© 2025 Todos os direitos reservados.</p>
-                  </div>
-                  <div class="column is-4">
-                    <h3 class="title is-5 has-text-white">Links Rápidos</h3>
-                    <ul>
-                      {['Home', 'Sobre', 'Serviços', 'Contato'].map((item) => (
-                        <li key={item}><a href={`#${item.toLowerCase()}`} class="has-text-grey-lighter">{item}</a></li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div class="column is-4">
-                    <h3 class="title is-5 has-text-white">Contato</h3>
-                    <p class="is-size-6 has-text-grey-lighter">Email: contato@suaempresa.com</p>
-                    <p class="is-size-6 has-text-grey-lighter">Telefone: (11) 99999-9999</p>
-                    <p class="is-size-6 has-text-grey-lighter">
-                      Redes: <a href="#" class="has-text-warning">Instagram</a> | <a href="#" class="has-text-warning">WhatsApp</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </footer>
+            </div>
+          </footer>
         </>
       );
     }
