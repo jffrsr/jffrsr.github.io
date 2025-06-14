@@ -4,13 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Energia solar com economia e sustentabilidade. Calcule seu sistema e conheça nossos serviços.">
-  <title>Eco Solares</title>
+  <title>ecosolares</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23ffffff' d='M18.34,1.71c-1.26.22-2.33-.09-2.33-.09-2.3-.67-5.16-2.03-7.62-1.5-1.24.27-3.44,1.37-3.88,2.66.12-.04,1.68-.79,2.18-.88s1.66-.16,2.38-.09,1.16.09,1.16.09c-2.52.06-4.17.46-5.99,1.16C.07,6.1.19,11.89,3.47,15.27c1.27,1.31,2.92,2.34,5.07,2.63,3.6.49,7.04-.96,8.94-4.09.52-.86,1.65-3.18,1.44-4.25-.06-.31,0-.03,0-.1,0,0-.15,1.31-.71,2.4-.79,1.54-1.99,3.03-3.53,3.88-1.97-.53,1.22-2.35,2.09-3.03,1.63-.18,3.77-.16,5.19-1.03,1.27-3.53,1.19-8.73,5.35-4.44,1.65,5.61,9.05,1.43,12.91-2.66l.08-.07'/%3E%3C/svg%3E">
   <!-- Bulma CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" rel="stylesheet">
+  <link href="https Franca://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css" rel="stylesheet">
   <!-- Swiper CSS -->
   <link href="https://unpkg.com/swiper@8/swiper-bundle.min.css" rel="stylesheet">
-  <!-- Google Fonts (Roboto) -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts (Roboto, Abril Fatface) -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Abril+Fatface&display=swap" rel="stylesheet">
   <!-- React e ReactDOM -->
   <script defer src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
   <script defer src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
@@ -22,11 +24,11 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      background-color: #1a2525;
+      background-color: #1a252f;
       color: #e5e7eb;
     }
     .fade-in {
-      animation: fadeIn 1s ease-in;
+      animation: fadeIn 1s ease-in-out;
     }
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -37,7 +39,7 @@
       width: 100%;
       min-height: 100vh;
       overflow: hidden;
-      background-color: #1a2525;
+      background-color: #1a252f;
       background-size: cover;
       background-position: center;
       display: flex;
@@ -61,55 +63,79 @@
       z-index: 2;
     }
     .mouse {
-      width: 50px;
-      height: 90px;
-      border: 4px solid #ffffff;
-      border-radius: 60px;
+      width: 40px;
+      height: 60px;
+      border: 2px solid #fff;
+      border-radius: 30px;
       position: fixed;
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 3;
+      z-index: 10;
+      transition: all 0.3s ease;
     }
     .mouse::before {
       content: '';
-      width: 12px;
-      height: 12px;
+      width: 8px;
+      height: 8px;
       position: absolute;
       top: 10px;
       left: 50%;
       transform: translateX(-50%);
-      background-color: #ffffff;
+      background-color: #fff;
       border-radius: 50%;
-      opacity: 1;
-      animation: wheel 2s infinite;
+      opacity: wheel 1.5s infinite;
     }
     @keyframes wheel {
       to {
         opacity: 0;
-        top: 60px;
+        top: 40px;
       }
+    }
+    .mouse.moved {
+      width: 24px;
+      height: 36px;
+      bottom: 10px;
+      right: 10px;
+      left: auto;
+      transform: none;
+    }
+    .mouse.moved::before {
+      width: 6px;
+      height: 6px;
+      top: 6px;
     }
     @media (max-width: 640px) {
       .image-bg {
         padding-top: 48px;
       }
       .mouse {
-        width: 40px;
-        height: 72px;
-        border-width: 3px;
+        width: 32px;
+        height: 48px;
+        border-width: 2px;
         bottom: 10px;
       }
       .mouse::before {
-        width: 10px;
-        height: 10px;
+        width: 6px;
+        height: 6px;
         top: 8px;
       }
       @keyframes wheel {
         to {
           opacity: 0;
-          top: 48px;
+          top: 32px;
         }
+      }
+      .mouse.moved {
+        width: 20px;
+        height: 30px;
+        bottom: 5px;
+        right: 5px;
+      }
+      .mouse.moved::before {
+        width: 5px;
+        height: 5px;
+        top: 5px;
       }
     }
     .scroll-smooth {
@@ -149,7 +175,7 @@
     }
     .button.is-warning {
       background-color: #facc15;
-      color: #1a2525;
+      color: #1a252f;
     }
     .button.is-warning:hover {
       background-color: #eab308;
@@ -166,17 +192,30 @@
       padding: 20px;
     }
     .logo-svg {
-      width: 40px;
-      height: 40px;
+      width: 24px;
+      height: 24px;
       vertical-align: middle;
     }
+    .brand-text {
+      font-family: 'Abril Fatface', cursive;
+      font-size: 12px;
+      color: #fff;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    #home .title {
+      font-family: 'Abril Fatface', cursive;
+    }
     .st0 {
-      fill: #ffffff;
+      fill: #fff;
     }
     @media (max-width: 640px) {
       .logo-svg {
-        width: 32px;
-        height: 32px;
+        width: 20px;
+        height: 20px;
+      }
+      .brand-text {
+        font-size: 10px;
       }
     }
     .bank-logo {
@@ -193,61 +232,54 @@
   </style>
 </head>
 <body class="scroll-smooth">
-  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-    <symbol id="lg-eco" viewBox="0 0 20 20">
-      <title>Logo-Ecosolares</title>
-      <path class="st0" d="M18.34,1.71s-1.26.22-2.33-.09C13.71.95,10.85-.41,8.39.12c-1.24.27-3.44,1.37-3.88,2.66-.03.09-.03.13.09.09s1.59-.75,2.09-.84,1.66-.16,2.38-.09,1.16.09,1.16.09c-2.52.06-4.17.46-5.99,2.17C.07,8.1.19,13.89,3.47,17.27c1.27,1.31,2.92,2.34,5.07,2.63,3.6.49,7.04-.96,8.94-4.09.52-.86,1.65-3.18,1.44-4.25-.06-.31,0-.03,0-.03,0,0-.15,1.31-.71,2.4-.79,1.54-1.99,3.03-3.53,3.88-.97.53-1.78.91-2.91,1.03-1.63.18-3.77-.16-5.19-1.03C1.27,14.53,1.19,8.73,5.35,4.44c4.65,5.61,9.05,1.43,12.91-2.66l.08-.07h0Z"/>
-      <polygon class="st0" points="10.69 11.57 8.13 9.75 11.07 10.68 9.98 9.15 11.51 10.28 10.54 7.4 12.32 9.81 12.35 8.09 12.91 9.72 13.88 6.84 13.88 9.93 14.95 8.4 14.35 10.18 16.85 8.34 15.1 10.81 16.79 10.31 15.38 11.34 18.42 11.37 15.51 12.31 17.29 12.87 15.45 12.87 15.73 13.22 12.98 12.35 10.69 11.57"/>
-      <path class="st0" d="M2.66,10.68l.03,1.13s.53-.09.56-.19.06-1.13.06-1.13c0,0-.22-.09-.44,0l-.22.09v.09ZM14.51,13.56v.63s.03.28.44.31.75.25.75-.25v-.78s.06-.19-.38-.22c-.37-.03-.81-.18-.81.31ZM14.48,15.22c0,.5,0,.59.38.66s.69.09.69.09c0,0,.16.03.16-.25v-.75s.03-.22-.25-.25c-.78-.08-.97-.48-.97.5ZM13.26,12.75c-.06,0-.19,0-.19.41v.63s-.09.13.44.31.66.22.66.22c0,0,.22-.03.22-.22s-.03-.84-.03-.84c0,0-.03-.19-.19-.22-.18-.04-.87-.28-.91-.28ZM13.23,14.18c-.13.13-.16.59-.13.84s.03.41.34.47.78.25.84.16.09-.19.09-.56c0-.27.05-.47-.05-.6-.08-.1-1.02-.39-1.1-.31ZM13.82,15.75l-.56-.19s-.16.03-.16.41-.06.69.06.78,1.03.38,1.03.38c0,0,.19,0,.19-.22v-.75s.06-.22-.25-.31l-.31-.09ZM15.01,17.31l.66-.53v-.53s-.28-.13-.66-.19-.5-.03-.5.19v.72s.09.22.19.28.31.06.31.06ZM12.45,12.43s-.47-.19-.5-.19-.22-.09-.22.31v.69s.09.22.44.34.59.19.59.19c0,0,.22.06.22-.13s-.03-.88-.03-.88c0,0,0-.16-.25-.25l-.25-.09ZM12.16,13.75s-.41-.25-.41.16v.81s0,.13.44.28.5.19.5.19c0,0,.28.09.28-.16s-.03-.81-.03-.81c0,0,.06-.22-.28-.31s-.5-.16-.5-.16ZM12.38,15.25s-.47-.19-.53-.19-.09.06-.09.5v.47s0,.22.28.31.72.25.72.25c0,0,.22.09.22-.25v-.72s.09-.19-.25-.28l-.34-.09ZM12.45,16.65l-.53-.19s-.16-.06-.16.41v.66s.09.22.38.31.66.19.66.19c0,0,.19.06.19-.25s-.03-.72-.03-.72c0,0,.03-.19-.19-.28s-.31-.13-.31-.13ZM13.23,18.15l1.09-.47s.13-.28-.13-.38-.97-.34-.97-.34c0,0-.13.13-.13.56v.56s.03.09.06.09.06-.03.06-.03ZM15.88,13.68v.81s.03.19.56.19.5,0,.5,0c0,0,.16,0,.16-.34v-.69s0-.25-.25-.25c-.28,0-.97-.09-.97.28ZM16.38,16.09l.72-.84s.06-.31-.13-.38-.97-.03-.97-.03c0,0-.13.03-.13.41v.66s.13.22.25.22.25-.03.25-.03ZM10.8,16.02s-.42-.3-.42.14v.75s.22.28.66.41.41.13.41.13c0,0,.19.06.19-.34s.03-.78-.03-.78c-.06,0-.8-.3-.8-.3ZM11.41,14.84s.19,0,.19.44-.03.69-.03.69c0,0-.03.19-.47,0s-.69-.38-.72-.44,0-.97,0-.97c.13-.21.81.21,1.03.28ZM10.79,13.15s-.44-.19-.44.13v.78s0,.19.41.34.59.25.59.25c0,0,.25.06.25-.19v-.78s.06-.16-.31-.31-.5-.22-.50-.22ZM11.07,11.87l-.47-.19s-.22-.09-.22.19v.75s-.06.22.34.34.69.25.69.25c0,0,.16.03.16-.25v-.69s0-.22-.25-.31l-.25-.09ZM11.54,18.53h-.88s-.28-.06-.28-.44v-.75c.08-.21,1.19.34,1.19.47v.66l-.03.06ZM11.76,18.47l.03-.59s.34.06.69.22.41.22.34.22-1.06.16-1.06.16ZM15.95,16.56l.28-.31s-.16-.09-.22-.03-.19.16.18.09.09.16.09.16ZM18.1,13.28l-.63,1.31s-.25,0-.25-.22v-.75s-.03-.22.25.16-.63-.09-.63-.09ZM9.45,16.81s-.47-.28-.47.16v.78s-.06.13.47.31c.53.19.56.19.56.19,0,0,.22.16.22-.25s-.03-.75-.03-.75c0-.16-.6-.38-.75-.44ZM9.51,15.43s-.5-.28-.5.13.03.81.03.81c0,0,.13.22.56.34.44.13.47.13.47.13c0,0,.22.13.19-.31s-.03-.66-.03-.66c-.09-.36-.5-.29-.72-.44ZM8.98,14.06v.84s.09.25.53.41c.44.16.47.19.47.19,0,0,.28.06.28-.31s-.03-.75-.03-.75c-.14-.24-1.25-.72-1.25-.38ZM8.95,12.81c0,.5.03.75.03.75,0,0,.13.25.56.38.44.13.47.16.47.16,0,0,.25.06.25-.28v-.69s.03-.25-.28-.34c-.33-.1-1.03-.56-1.03.03ZM9.73,11.31l-.56-.25s-.19-.06-.16.47-.16.69.28.84.72.28.72.28c0,0,.22.03.22-.25v-.69s.06-.22-.22-.31-.28-.09-.28-.09ZM7.63,16.4c-.03.31,0,.91,0,.91,0,0,.03.13.5.25s.5.13.5.13c0,0,.22.09.22-.25v-.72c-.03-.2-1.18-.68-1.22-.31ZM8.29,14.97l-.5-.16s-.16,0-.16.25v.81s0,.13.25.19.72.28.72.28c0,0,.25.06.25-.19v-.75s-.03-.28-.31-.34-.25-.09-.25-.09ZM8.85,13.9v.88s.03.31-.5.09-.72-.19-.72-.50v-.81s.03-.22.25-.16.88.25.91.34c.03.09.06.15.06.15ZM8.01,12.06s-.02,0-.04-.02c-.1-.03-.33-.08-.33.14,0,.28.03.91.03.91,0,0-.03.16.41.28s.63.16.63.16c0,0,.19.06.16-.47l-.03-.53s0-.22-.31-.31-.50-.16-.50-.16h0ZM8.04,10.68s-.41-.19-.41.06v.97s.06.16.44.25l.63.16s.16-.03.16-.28v-.69s0-.25-.25-.31-.56-.16-.56-.16ZM6.98,16c-.35-.06-.75-.26-.75.25v.66s-.03.22.31.28.75.16.75.16c0,0,.19-.03.19-.22s-.03-.88-.03-.88c-.04-.15-.33-.21-.47-.25ZM6.23,14.68v.84s.09.22.28.25.81.16.81.16c0,0,.13,0,.13-.19s-.03-1-.03-1c-.08-.1-1.19-.44-1.19-.06ZM6.57,13.09s-.34-.03-.34.19v.78s.06.25.22.28.88.19.88.19c0,0,.13,0,.13-.25v-.81s0-.16-.28-.22-.59-.16-.59-.16ZM6.26,11.9v.75s-.06.19.22.25.81.16.81.16c0,0,.13.03.13-.16v-.91c.08-.15-1.16-.56-1.16-.09ZM7.38,10.5s-.88-.25-.97-.25-.16.09-.16.25v.78s-.06.19.38.28.66.16.66.16c0,0,.16-.06.16-.25v-.94l-.06-.03ZM5.13,14.37s-.28.03-.28.25v.66s-.03.31.25.31h.84s.19,0,.19-.28v-.66s0,-.28-.47-.28h-.53ZM4.85,13.18v.69s-.06.34.31.34h.78s.22,0,.19-.38,0-.59,0-.59c0,0,.03-.28-.38-.28h-.72s-.13.04-.16.16-.03.06-.03.06ZM4.89,11.6c-.01.26-.18.1.18.24h.84s.16-.03.16-.31-.03-.59-.03-.59c0,0,.03-.19-.19-.25-.24-.07-.76-.09-1.02-.03ZM5.54,10.12h-.56s-.13.16-.13.38.03.69.03.69c0,0,-.03.19.22.19h.88s.16-.03.16-.25v-.69s-.03-.25-.19-.28-.41-.03-.41-.03ZM10.1,18.56l-1.09-.09s-.09-.34.06-.34,1,.34,1,.34l.03.09ZM8.79,18.4s.13-.28,0-.38-.84-.41-.94-.41-.22.03-.22.16s.03.31.03.31l1.13.31ZM6.32,17.37s.03-.13.19-.09c.43.09,1.08.11.94.69l-1.13-.59ZM4.94,15.81c-.09.16-.06.34-.06.34l.97.88s.25.06.25-.16v-.88s.03-.22-.25-.22c-.22,0-.83-.09-.91.03ZM3.63,14.5l.75,1.09s.34.09.34-.16-.03-.91-.03-.91c0,0,-.03-.22-.22-.19s-.84.16-.84.16ZM4.04,13.03s-.53.03-.53.28v.88s0,.19.31.16l.75-.13c0,-.06.16,0,.16-.25v-.84l-.22-.16l-.47.06ZM3.54,11.87v.94s.03.16.28.13.75-.13.75-.13c0,0,.16-.06.16-.28v-.78s.03-.22-.28-.19c-.17.02-.91.11-.91.31ZM4.73,10.4s-.03-.25-.19-.28-.97.16-1,.31-.03,1.03-.03,1.03c0,0,-.03.16.44.06s.66-.13.66-.13c0,0,.16-.03.16-.22s-.03-.78-.03-.78ZM3.07,13.28s.16.59.19.63.19-.06.16-.28-.06-.28-.13-.34-.22,0-.22,0ZM3.02,13.17l.3-.23s.09-.94,0-1.03-.58.08-.58.08l.27,1.19Z"/>
-    </symbol>
-    <symbol id="lg-banco-do-brasil" viewBox="0 0 20 20">
-      <title>Logo Banco do Brasil</title>
-      <rect class="st0" x="2" y="2" width="16" height="16" rx="2"/>
-      <text x="10" y="12" font-size="8" text-anchor="middle" class="st0">BB</text>
-    </symbol>
-    <symbol id="lg-santander" viewBox="0 0 20 20">
-      <title>Logo Santander</title>
-      <circle class="st0" cx="10" cy="10" r="8"/>
-      <text x="10" y="12" font-size="8" text-anchor="middle" class="st0">S</text>
-    </symbol>
-    <symbol id="lg-caixa" viewBox="0 0 20 20">
-      <title>Logo Caixa</title>
-      <rect class="st0" x="2" y="2" width="16" height="16"/>
-      <text x="10" y="12" font-size="8" text-anchor="middle" class="st0">C</text>
-    </symbol>
-  </svg>
   <div id="root"></div>
   <div id="error"></div>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       try {
         if (typeof React === 'undefined') {
-          throw new Error('React não está definido. Verifique se o script React foi carregado.');
+          throw new Error('React não carregado.');
         }
         if (typeof ReactDOM === 'undefined') {
-          throw new Error('ReactDOM não está definido. Verifique se o script ReactDOM foi carregado.');
+          throw new Error('ReactDOM não carregado.');
         }
         if (typeof Swiper === 'undefined') {
-          throw new Error('Swiper não está definido. Verifique se o script Swiper foi carregado.');
+          throw new Error('Swiper não carregado.');
+        }
+
+        // Controle do ícone de scroll
+        const mouseIcon = document.querySelector('.mouse');
+        const homeSection = document.querySelector('#home');
+        if (mouseIcon && homeSection) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                mouseIcon.classList.remove('moved');
+              } else {
+                mouseIcon.classList.add('moved');
+              }
+            });
+          }, { threshold: 0.1 });
+          observer.observe(homeSection);
         }
 
         const images = [
-          "https://images.unsplash.com/photo-1509389928833-fe62aef36deb?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3",
-          "https://images.unsplash.com/photo-1574360773950-133867861ae9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-          "https://images.unsplash.com/photo-1497440001374-f26997328c1b?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3",
-          "https://images.unsplash.com/photo-1558449028-b53a39d100fc?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
-          "https://images.unsplash.com/photo-1521618755572-156ae0cdd74d?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3",
-          "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80&w=2058&auto=format&fit=crop&ixlib=rb-4.0.3",
-          "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
-          "https://images.unsplash.com/photo-1589275776107-e193042128bd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-          "https://images.unsplash.com/photo-1629726797843-618688139f5a?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3",
-          "https://images.unsplash.com/photo-1491677533189-49af044391ed?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3"
+          "https://images.unsplash.com/photo-1509389928833-fe62aef36deb",
+          "https://images.unsplash.com/photo-1574360773950-133867861ae9",
+          "https://images.unsplash.com/photo-1497440001374-f26997328c1b",
+          "https://images.unsplash.com/photo-1558449028-b53a39d100fc",
+          "https://images.unsplash.com/photo-1521618755572-156ae0cdd74d",
+          "https://images.unsplash.com/photo-1613665813446-82a78c468a1d",
+          "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9",
+          "https://images.unsplash.com/photo-1589275776107-e193042128bd",
+          "https://images.unsplash.com/photo-1629726797843-618688139f5a",
+          "https://images.unsplash.com/photo-1491677533189-49af044391ed"
         ];
 
         const mockTestimonials = [
-          { nome: 'João Silva', cidade: 'São Paulo', depoimento: 'Reduzi minha conta em 70%!', foto: 'https://via.placeholder.com/100' },
-          { nome: 'Maria Oliveira', cidade: 'Rio de Janeiro', depoimento: 'Serviço impecável!', foto: 'https://via.placeholder.com/100' },
-          { nome: 'Carlos Souza', cidade: 'Belo Horizonte', depoimento: 'Instalação rápida e eficiente.', foto: 'https://via.placeholder.com/100' }
+          { nome: 'João Silva', cidade: 'São Paulo', depoimento: 'Economia de 70%!', foto: 'https://via.placeholder.com/100' },
+          { nome: 'Maria Oliveira', cidade: 'Rio', depoimento: 'Serviço excelente!', foto: 'https://via.placeholder.com/100' },
+          { nome: 'Carlos Souza', cidade: 'BH', depoimento: 'Instalação rápida.', foto: 'https://via.placeholder.com/100' }
         ];
 
         function Header() {
@@ -266,9 +298,10 @@
                   { href: '#home', className: 'navbar-item' },
                   React.createElement(
                     'svg',
-                    { className: 'logo-svg', role: 'img', 'aria-label': 'Logo Eco Solares' },
-                    React.createElement('use', { xlinkHref: '#lg-eco' })
-                  )
+                    { className: 'logo-svg', role: 'img', 'aria-label': 'logo ecosolares' },
+                    React.createElement('use', { 'xlink:href': './logos.svg#lg-eco' })
+                  ),
+                  React.createElement('span', { className: 'brand-text' }, 'ecosolares')
                 ),
                 React.createElement(
                   'button',
@@ -284,16 +317,16 @@
               React.createElement(
                 'div',
                 { className: `navbar-menu ${isOpen ? 'is-active' : ''} has-background-success-dark` },
-                ['Home', 'Sobre', 'Serviços', 'Marcas', 'Testemunhos', 'Galeria', 'Financiamento', 'Contato'].map((item) =>
+                ['home', 'sobre', 'serviços', 'marcas', 'testemunhos', 'galeria', 'financiamento', 'contato'].map((item) =>
                   React.createElement(
                     'a',
                     {
                       key: item,
-                      href: `#${item.toLowerCase()}`,
+                      href: `#${item}`,
                       className: 'navbar-item has-text-white',
                       onClick: () => setIsOpen(false)
                     },
-                    item
+                    item.charAt(0).toUpperCase() + item.slice(1)
                   )
                 )
               )
@@ -313,11 +346,11 @@
                 const cost = (kWp * 5000).toFixed(2);
                 setResult({ kWp, cost });
               } else {
-                alert('Insira um valor válido maior que zero!');
+                alert('Insira um valor válido.');
               }
             } catch (error) {
-              console.error('Erro na calculadora:', error);
-              alert('Ocorreu um erro ao calcular. Tente novamente.');
+              console.error('Erro ao calcular:', error);
+              alert('Erro ao calcular.');
             }
           };
 
@@ -327,7 +360,7 @@
             React.createElement(
               'div',
               { className: 'container' },
-              React.createElement('h2', { className: 'title is-size-3 has-text-centered has-text-green fade-in' }, 'Calcule Sua Economia'),
+              React.createElement('h2', { className: 'title is-3 has-text-centered has-text-success fade-in' }, 'Calcule Sua Energia Solar'),
               React.createElement(
                 'div',
                 { className: 'card' },
@@ -363,13 +396,12 @@
                       )
                     )
                   ),
-                  result &&
-                    React.createElement(
-                      'div',
-                      { className: 'content mt-4' },
-                      React.createElement('p', null, `Potência necessária: ${result.kWp} kWp`),
-                      React.createElement('p', null, `Custo estimado: R$${result.cost}`)
-                    )
+                  result && React.createElement(
+                    'div',
+                    { className: 'content mt-4' },
+                    React.createElement('p', null, `Potência necessária: ${result.kWp} kWp`),
+                    React.createElement('p', null, `Custo estimado: R$${result.cost}`)
+                  )
                 )
               )
             )
@@ -384,7 +416,7 @@
               try {
                 const swiperElement = document.querySelector('.swiper');
                 if (!swiperElement) {
-                  throw new Error('Elemento .swiper não encontrado no DOM');
+                  throw new Error('Elemento .swiper não encontrado.');
                 }
                 const swiper = new Swiper('.swiper', {
                   loop: true,
@@ -396,17 +428,14 @@
                     1024: { slidesPerView: 3 }
                   }
                 });
-                console.log('Swiper inicializado com sucesso');
-                return swiper;
+                console.log('Swiper inicializado.');
               } catch (error) {
-                console.error('Erro ao inicializar Swiper:', error);
+                console.error('Erro no Swiper:', error);
               }
             };
 
             const randomImage = images[Math.floor(Math.random() * images.length)];
-            console.log('Imagem de fundo selecionada:', randomImage);
             setBgImage(randomImage);
-
             initializeSwiper();
 
             return () => {};
@@ -433,7 +462,7 @@
                   React.createElement(
                     'p',
                     { className: 'subtitle is-4 is-size-6-mobile has-text-white text-shadow-md mb-5' },
-                    'Economize com energia limpa e sustentável.'
+                    'Economize com energia limpa.'
                   ),
                   React.createElement(
                     'a',
@@ -451,14 +480,14 @@
               React.createElement(
                 'div',
                 { className: 'container' },
-                React.createElement('h2', { className: 'title is-size-3 has-text-centered has-text-green fade-in' }, 'Sobre Nós'),
+                React.createElement('h2', { className: 'title is-3 has-text-centered has-text-success fade-in' }, 'Sobre'),
                 React.createElement(
                   'div',
                   { className: 'columns' },
                   React.createElement(
                     'div',
                     { className: 'column is-6' },
-                    React.createElement('p', { className: 'is-size-5' }, 'Somos líderes em energia solar, oferecendo soluções sustentáveis desde 2010. Nossa missão é tornar a energia limpa acessível.')
+                    React.createElement('p', { className: 'is-size-5' }, 'Líderes em energia solar desde 2010.')
                   ),
                   React.createElement(
                     'div',
@@ -475,8 +504,8 @@
                           React.createElement(
                             'div',
                             { className: 'card-content has-text-centered' },
-                            React.createElement('p', { className: 'title is-size-5 has-text-weight-bold has-text-warning' }, '500+'),
-                            React.createElement('p', null, 'Projetos Concluídos')
+                            React.createElement('p', { className: 'title is-5 has-text-weight-bold has-text-warning' }, '500+'),
+                            React.createElement('p', null, 'Projetos')
                           )
                         )
                       ),
@@ -489,8 +518,8 @@
                           React.createElement(
                             'div',
                             { className: 'card-content has-text-centered' },
-                            React.createElement('p', { className: 'title is-size-5 has-text-weight-bold has-text-warning' }, '10 MW'),
-                            React.createElement('p', null, 'Potência Instalada')
+                            React.createElement('p', { className: 'title is-5 has-text-weight-bold has-text-warning' }, '10 MW'),
+                            React.createElement('p', null, 'Potência')
                           )
                         )
                       )
@@ -505,7 +534,7 @@
               React.createElement(
                 'div',
                 { className: 'container' },
-                React.createElement('h2', { className: 'title is-size-3 has-text-centered has-text-green fade-in' }, 'Nossos Serviços'),
+                React.createElement('h2', { className: 'title is-3 has-text-centered has-text-success fade-in' }, 'Serviços'),
                 React.createElement(
                   'div',
                   { className: 'columns' },
@@ -519,9 +548,9 @@
                         React.createElement(
                           'div',
                           { className: 'card-content has-text-centered' },
-                          React.createElement('h3', { className: 'title is-size-5 has-text-weight-bold has-text-green' }, servico),
-                          React.createElement('p', { className: 'is-size-6' }, 'Serviço de alta qualidade para sistemas solares.'),
-                          React.createElement('p', null, React.createElement('a', { href: '#contato', className: 'has-text-warning' }, 'Saiba mais'))
+                          React.createElement('h3', { className: 'title is-5 has-text-weight-bold has-text-success' }, servico),
+                          React.createElement('p', { className: 'is-size-6' }, 'Serviços de qualidade.'),
+                          React.createElement('p', null, React.createElement('a', { href: '#contato', className: 'has-text-warning' }, 'Mais'))
                         )
                       )
                     )
@@ -535,11 +564,11 @@
               React.createElement(
                 'div',
                 { className: 'container' },
-                React.createElement('h2', { className: 'title is-size-3 has-text-centered has-text-green fade-in' }, 'Nossas Marcas'),
+                React.createElement('h2', { className: 'title is-3 has-text-centered has-text-success fade-in' }, 'Marcas'),
                 React.createElement(
                   'div',
                   { className: 'columns' },
-                  ['Jinko Solar', 'Canadian Solar', 'Trina Solar', 'Longi'].map((marca) =>
+                  ['Jinko', 'Canadian', 'Trina', 'Longi'].map((marca) =>
                     React.createElement(
                       'div',
                       { key: marca, className: 'column' },
@@ -549,7 +578,7 @@
                         React.createElement(
                           'div',
                           { className: 'card-content has-text-centered' },
-                          React.createElement('img', { src: 'https://via.placeholder.com/100?text=Marca', alt: marca, className: 'image is-64x64 mx-auto mb-3' }),
+                          React.createElement('img', { src: 'https://via.placeholder.com/100', alt: marca, className: 'image is-64x64 mx-auto mb-3' }),
                           React.createElement('p', { className: 'is-size-6' }, marca)
                         )
                       )
@@ -564,7 +593,7 @@
               React.createElement(
                 'div',
                 { className: 'container' },
-                React.createElement('h2', { className: 'title is-size-3 has-text-centered has-text-green fade-in' }, 'O que dizem nossos clientes'),
+                React.createElement('h2', { className: 'title is-3 has-text-centered has-text-success fade-in' }, 'Testemunhos'),
                 React.createElement(
                   'div',
                   { className: 'swiper' },
@@ -598,7 +627,7 @@
               React.createElement(
                 'div',
                 { className: 'container' },
-                React.createElement('h2', { className: 'title is-size-3 has-text-centered has-text-green fade-in' }, 'Galeria de Projetos'),
+                React.createElement('h2', { className: 'title is-3 has-text-centered has-text-success fade-in' }, 'Galeria'),
                 React.createElement(
                   'div',
                   { className: 'columns' },
@@ -615,7 +644,7 @@
                           React.createElement(
                             'figure',
                             { className: 'image is-3by2' },
-                            React.createElement('img', { src: 'https://via.placeholder.com/300x200?text=Projeto', alt: projeto })
+                            React.createElement('img', { src: 'https://via.placeholder.com/300x200', alt: projeto })
                           )
                         ),
                         React.createElement(
@@ -635,8 +664,8 @@
               React.createElement(
                 'div',
                 { className: 'container' },
-                React.createElement('h2', { className: 'title is-size-3 has-text-centered has-text-green fade-in' }, 'Financiamento'),
-                React.createElement('p', { className: 'subtitle is-size-5 has-text-centered mb-4' }, 'Oferecemos parcerias com bancos para facilitar sua instalação solar.'),
+                React.createElement('h2', { className: 'title is-3 has-text-centered has-text-success fade-in' }, 'Financiamento'),
+                React.createElement('p', { className: 'subtitle is-5 has-text-centered mb-4' }, 'Parcerias com bancos.'),
                 React.createElement(
                   'div',
                   { className: 'columns' },
@@ -656,8 +685,8 @@
                           { className: 'card-content has-text-centered' },
                           React.createElement(
                             'svg',
-                            { className: 'bank-logo', role: 'img', 'aria-label': `Logo ${banco.nome}` },
-                            React.createElement('use', { xlinkHref: `#${banco.logo}` })
+                            { className: 'bank-logo', role: 'img', 'aria-label': `logo ${banco.nome.toLowerCase()}` },
+                            React.createElement('use', { 'xlink:href': `./logos.svg#${banco.logo}` })
                           ),
                           React.createElement('p', { className: 'is-size-6 mt-3' }, banco.nome),
                           React.createElement('p', { className: 'is-size-7' }, 'Taxa: 1,2% a.m.'),
@@ -675,7 +704,7 @@
               React.createElement(
                 'div',
                 { className: 'container' },
-                React.createElement('h2', { className: 'title is-size-3 has-text-centered has-text-green fade-in' }, 'Contato'),
+                React.createElement('h2', { className: 'title is-3 has-text-centered has-text-success fade-in' }, 'Contato'),
                 React.createElement(
                   'div',
                   { className: 'columns' },
@@ -725,7 +754,7 @@
                           React.createElement(
                             'div',
                             { className: 'control' },
-                            React.createElement('textarea', { className: 'textarea', placeholder: 'Mensagem', rows: '4' })
+                            React.createElement('textarea', { className: 'textarea', placeholder: 'Mensagem', rows: 4 })
                           )
                         ),
                         React.createElement(
@@ -744,15 +773,15 @@
                     'div',
                     { className: 'column is-6' },
                     React.createElement('iframe', {
-                      src: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.123456789!2d-46.633308!3d-23.550520!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59a8c0c!2sSão%20Paulo%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v1631234567890',
+                      src: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.123456789!2d-46.633308!3d-23.550520!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59!2sSão%20Paulo%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v171234567890',
                       className: 'is-fullwidth',
                       style: { height: '256px', borderRadius: '8px' },
                       allowFullScreen: '',
                       loading: 'lazy'
                     }),
-                    React.createElement('p', { className: 'mt-4 is-size-6' }, 'Endereço: Av. Solar, 123, São Paulo, SP'),
-                    React.createElement('p', { className: 'is-size-6' }, 'Email: contato@suaempresa.com'),
-                    React.createElement('p', { className: 'is-size-6' }, 'Telefone: (11) 99999-9999')
+                    React.createElement('p', { className: 'mt-4 is-size-6' }, 'Av. Solar, 123, SP'),
+                    React.createElement('p', { className: 'is-size-6' }, 'Email: contato@ecosolares.com'),
+                    React.createElement('p', { className: 'is-size-6' }, 'Tel: (11) 99999-9999')
                   )
                 )
               )
@@ -769,23 +798,27 @@
                   React.createElement(
                     'div',
                     { className: 'column is-4' },
-                    React.createElement('h3', { className: 'title is-5 has-text-white' }, 'Eco Solares'),
+                    React.createElement('h3', { className: 'title is-5 has-text-white' }, 'ecosolares'),
                     React.createElement(
                       'svg',
-                      { className: 'logo-svg', role: 'img', 'aria-label': 'Logo Eco Solares' },
-                      React.createElement('use', { xlinkHref: '#lg-eco' })
+                      { className: 'logo-svg', role: 'img', 'aria-label': 'logo ecosolares' },
+                      React.createElement('use', { 'xlink:href': './logos.svg#lg-eco' })
                     ),
-                    React.createElement('p', { className: 'is-size-6 has-text-grey-lighter mt-2' }, '© 2025 Todos os direitos reservados.')
+                    React.createElement('p', { className: 'is-size-6 has-text-grey-lighter mt-2' }, '© 2025')
                   ),
                   React.createElement(
                     'div',
                     { className: 'column is-4' },
-                    React.createElement('h3', { className: 'title is-5 has-text-white' }, 'Links Rápidos'),
+                    React.createElement('h3', { className: 'title is-5 has-text-white' }, 'Links'),
                     React.createElement(
                       'ul',
                       null,
-                      ['Home', 'Sobre', 'Serviços', 'Contato'].map((item) =>
-                        React.createElement('li', { key: item }, React.createElement('a', { href: `#${item.toLowerCase()}`, className: 'has-text-grey-lighter' }, item))
+                      ['home', 'sobre', 'servicos', 'contato'].map((item) =>
+                        React.createElement(
+                          'li',
+                          { key: item },
+                          React.createElement('a', { href: `#${item}`, className: 'has-text-grey-lighter' }, item.charAt(0).toUpperCase() + item.slice(1))
+                        )
                       )
                     )
                   ),
@@ -793,15 +826,15 @@
                     'div',
                     { className: 'column is-4' },
                     React.createElement('h3', { className: 'title is-5 has-text-white' }, 'Contato'),
-                    React.createElement('p', { className: 'is-size-6 has-text-grey-lighter' }, 'Email: contato@suaempresa.com'),
-                    React.createElement('p', { className: 'is-size-6 has-text-grey-lighter' }, 'Telefone: (11) 99999-9999'),
+                    React.createElement('p', { className: 'is-size-6 has-text-grey-lighter' }, 'Email: contato@ecosolares.com'),
+                    React.createElement('p', { className: 'is-size-6 has-text-grey-lighter' }, 'Tel: (11) 99999-9999'),
                     React.createElement(
                       'p',
                       { className: 'is-size-6 has-text-grey-lighter' },
                       'Redes: ',
-                      React.createElement('a', { href: '#', className: 'has-text-warning' }, 'Instagram'),
+                      React.createElement('a', { href: '#', className: 'has-text-warning' }, 'Insta'),
                       ' | ',
-                      React.createElement('a', { href: '#', className: 'has-text-warning' }, 'WhatsApp')
+                      React.createElement('a', { href: '#', className: 'has-text-warning' }, 'Whats')
                     )
                   )
                 )
@@ -812,17 +845,15 @@
 
         const rootElement = document.getElementById('root');
         if (!rootElement) {
-          throw new Error('Elemento #root não encontrado no DOM');
+          throw new Error('Elemento #root não encontrado.');
         }
         ReactDOM.render(React.createElement(App), rootElement);
-        console.log('Aplicação renderizada com sucesso');
+        console.log('Aplicação renderizada.');
       } catch (error) {
-        console.error('Erro ao renderizar o app:', error);
+        console.error('Erro ao renderizar:', error);
         const errorElement = document.getElementById('error');
         if (errorElement) {
-          errorElement.innerHTML = `<h1>Erro: ${error.message}</h1><p>Verifique o console para mais detalhes.</p>`;
-        } else {
-          console.error('Elemento #error não encontrado no DOM');
+          errorElement.innerHTML = `<h4>Erro: ${error.message}</h4>`;
         }
       }
     });
