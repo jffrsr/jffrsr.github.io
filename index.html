@@ -6,13 +6,15 @@
   <meta name="description" content="Energia solar com economia e sustentabilidade. Calcule seu sistema e conheça nossos serviços.">
   <title>ecosolares</title>
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23ffffff' d='M18.34,1.71c-.1-.2-1.26.22-2.33-.09-2.3-.67-5.16-2.03-7.62-1.58-1.24.27-3.44,1.37-3.88,2.66-.03.09,0,.13.09.09s1.59-.75,2.09-.84,1.66-.16,2.38-.09,1.16.09,1.16.09c-2.52.06-4.17.46-5.99,2.17-4.17,3.89-4.05,9.68-.77,13.06,1.27,1.31,2.92,2.34,5.07,2.63,3.6.49,7.04-.96,8.94-4.09.52-.86,1.65-3.18,1.44-4.25-.06-.31,0-.03,0-.03,0,0-.15,1.31-.71,2.4-.79,1.54-1.99,3.03-3.53,3.88-.97.53-1.78.91-2.91,1.03-1.63.18-3.77-.16-5.19-1.03C1.27,14.53,1.19,8.73,5.35,4.44c4.65,5.61,9.05,1.43,12.91-2.66l.08-.07h0Z'/%3E%3C/svg%3E">
-  <!-- Bulma CSS -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23fab300' d='M17.53,11.3l2.47-1.3-2.47-1.3c-.08-.46-.2-.9-.36-1.34l1.49-2.36-2.79.11c-.15-.18-.3-.35-.47-.51-.16-.16-.33-.32-.51-.47l.11-2.79-2.36,1.49c-.43-.16-.88-.28-1.34-.36l-1.3-2.47-1.3,2.47c-.46.08-.9.2-1.34.36l-2.36-1.49.11,2.79c-.18.15-.35.3-.51.47-.16-.16-.32-.33-.47-.51l-2.79-.11,1.49,2.36c-.16.43-.28-.88-.36-1.34l-2.47,1.3,2.47,1.3c.08.46.2.9.36,1.34l-1.49,2.36,2.79-.11c.15.18.3.35.47.51.16.16.33.32.51.47l-.11,2.79,2.36-1.49c.43.16.88.28,1.34.36l1.3,2.47,1.3-2.47c.46-.08.9-.2,1.34-.36l2.36,1.49-.11-2.79c.18-.15.35-.3.51-.47.16-.16.32-.33.47-.51l2.79.11-1.49-2.36c.16-.43.28-.88.36-1.34ZM15.89,12.49c-.32.76-.78,1.44-1.37,2.03-.59.59-1.27,1.05-2.03,1.37-.79.33-1.62.5-2.49.5s-1.7-.17-2.49-.5c-.76-.32-1.44-.78-2.03-1.37-.59-.59-1.05-1.27-1.37-2.03-.33-.79-.5-1.62-.5-2.49s.17-1.7.5-2.49c.32-.76.78-1.44,1.37-2.03.59-.59,1.27-1.05,2.03-1.37.79-.33,1.62-.5,2.49-.5s1.7.17,2.49.5c.76.32,1.44.78,2.03,1.37.59.59,1.05,1.27,1.37,2.03.33.79.5,1.62.5,2.49s-.17,1.7-.5,2.49Z'/%3E%3Cpolygon fill='%23fab300' points='10.34 5.44 7.18 11.12 9.49 11.12 9.66 14.6 12.82 8.91 10.51 8.91 10.34 5.44'/%3E%3C/svg%3E">
+  <!-- Bulma CSS (versão 1.0.4) -->
   <link href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" rel="stylesheet">
   <!-- Swiper CSS -->
   <link href="https://unpkg.com/swiper@8/swiper-bundle.min.css" rel="stylesheet">
   <!-- Google Fonts (Roboto, Abril Fatface) -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Abril+Fatface&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
   <!-- React e ReactDOM -->
   <script defer src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
   <script defer src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
@@ -46,7 +48,7 @@
       align-items: center;
       justify-content: center;
       box-sizing: border-box;
-      padding-top: 56px;
+      padding-top: 70px;
     }
     .image-bg::before {
       content: '';
@@ -62,19 +64,27 @@
       position: relative;
       z-index: 2;
     }
+    #home {
+      position: relative;
+      overflow: hidden;
+    }
     .mouse {
+      display: none;
+    }
+    #home .mouse {
+      display: block;
       width: 50px;
       height: 90px;
       border: 4px solid #ffffff;
       border-radius: 60px;
-      position: fixed;
+      position: absolute;
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 3;
-      transition: all 0.3s ease;
+      transition: opacity 0.3s ease;
     }
-    .mouse::before {
+    #home .mouse::before {
       content: '';
       width: 12px;
       height: 12px;
@@ -93,30 +103,17 @@
         top: 60px;
       }
     }
-    .mouse.moved {
-      width: 30px;
-      height: 54px;
-      bottom: 10px;
-      right: 10px;
-      left: auto;
-      transform: none;
-    }
-    .mouse.moved::before {
-      width: 8px;
-      height: 8px;
-      top: 6px;
-    }
     @media (max-width: 640px) {
       .image-bg {
-        padding-top: 48px;
+        padding-top: 56px;
       }
-      .mouse {
+      #home .mouse {
         width: 40px;
         height: 72px;
         border-width: 3px;
         bottom: 10px;
       }
-      .mouse::before {
+      #home .mouse::before {
         width: 10px;
         height: 10px;
         top: 8px;
@@ -126,17 +123,6 @@
           opacity: 0;
           top: 48px;
         }
-      }
-      .mouse.moved {
-        width: 24px;
-        height: 43px;
-        bottom: 5px;
-        right: 5px;
-      }
-      .mouse.moved::before {
-        width: 6px;
-        height: 6px;
-        top: 5px;
       }
     }
     .scroll-smooth {
@@ -165,14 +151,14 @@
       border-color: #4b5e5e;
     }
     input:focus, textarea:focus {
-      border-color: #10b981;
-      box-shadow: 0 0 0 0.125em rgba(16, 185, 129, 0.25);
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 0.125em rgba(59, 130, 246, 0.25);
     }
-    .button.is-success {
-      background-color: #10b981;
+    .button.is-primary {
+      background-color: #3b82f6;
     }
-    .button.is-success:hover {
-      background-color: #059669;
+    .button.is-primary:hover {
+      background-color: #2563eb;
     }
     .button.is-warning {
       background-color: #facc15;
@@ -193,13 +179,22 @@
       padding: 20px;
     }
     .logo-svg {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
       vertical-align: middle;
+    }
+    .social-svg {
+      width: 20px;
+      height: 20px;
+      fill: #e5e7eb;
+      transition: fill 0.3s ease;
+    }
+    .button.is-dark:hover .social-svg {
+      fill: #000000 !important;
     }
     .brand-text {
       font-family: 'Abril Fatface', cursive;
-      font-size: 12px;
+      font-size: 18px;
       color: #ffffff;
       margin-left: 8px;
       vertical-align: middle;
@@ -212,11 +207,11 @@
     }
     @media (max-width: 640px) {
       .logo-svg {
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        height: 16px;
       }
       .brand-text {
-        font-size: 10px;
+        font-size: 14px;
       }
     }
     .bank-logo {
@@ -230,7 +225,148 @@
         height: 48px;
       }
     }
-  </style>
+    /* Navbar */
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.9) !important;
+      backdrop-filter: blur(5px);
+    }
+    .navbar-menu {
+      background-color: rgba(0, 0, 0, 0.9) !important;
+      backdrop-filter: blur(5px);
+    }
+    .navbar-item.has-text-white {
+      color: #e5e7eb !important;
+    }
+    .navbar-item.has-text-white:hover,
+    .navbar-item.has-dropdown:hover .navbar-item.has-text-white,
+    .navbar-item.has-dropdown.is-hoverable:hover .navbar-item.has-text-white {
+      color: #facc15 !important;
+    }
+    .navbar-dropdown.is-boxed {
+      background-color: #2d3a3a;
+      border: 1px solid #4b5e5e;
+    }
+    .navbar-dropdown .navbar-item {
+      color: #e5e7eb;
+    }
+    .navbar-dropdown .navbar-item:hover {
+      background-color: #3f4c4c;
+      color: #facc15 !important;
+    }
+    .navbar-divider {
+      background-color: #4b5e5e;
+    }
+    .navbar-burger span {
+      background-color: #e5e7eb;
+    }
+    @media (max-width: 1023px) {
+      .navbar-brand .navbar-item:not(.js-burger) {
+        display: flex;
+        align-items: center;
+      }
+    }
+    .contact-columns {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+    }
+    .contact-column {
+      display: flex;
+      flex-direction: column;
+      min-height: 400px;
+    }
+    .contact-map {
+      flex-grow: 1;
+      width: 100%;
+      border-radius: 8px;
+    }
+    @media (max-width: 768px) {
+      .contact-column {
+        min-height: auto;
+      }
+      .contact-map {
+        height: 300px;
+      }
+    }
+    .navbar-item.has-text-white {
+      color: #e5e7eb !important;
+    }
+    .navbar-item.has-text-white:hover {
+      color: #facc15 !important;
+    }
+    .navbar-dropdown.is-boxed {
+      background-color: #2d3a3a;
+      border: 1px solid #4b5e5e;
+    }
+    .navbar-dropdown .navbar-item:hover {
+      background-color: #3f4c4c;
+      color: #facc15;
+    }
+    .navbar-divider {
+      background-color: #4b5e5e;
+    }
+    .button.is-dark {
+      background-color: transparent;
+      border: 0px solid #e5e7eb;
+      color: #e5e7eb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.25rem;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .button.is-dark .icon {
+      margin: 0;
+    }
+    .button.is-dark:hover {
+      background-color: #facc15;
+      border-color: #facc15;
+    }
+    .navbar-burger span {
+      background-color: #e5e7eb;
+    }
+    .has-text-primary {
+      color: #3b82f6 !important;
+    }
+    .magazine-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .magazine-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .magazine-image {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .magazine-item:hover .magazine-image {
+      transform: scale(1.05);
+    }
+    .magazine-text {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      color: #e5e7eb;
+      padding: 10px;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .swiper-bank .swiper-slide {
+      display: flex;
+      justify-content: center;
+    }
+</style>
 </head>
 <body class="scroll-smooth">
   <div id="root"></div>
@@ -248,22 +384,6 @@
           throw new Error('Swiper não está definido. Verifique se o script Swiper foi carregado.');
         }
 
-        // Controlar o ícone de scroll
-        const mouseIcon = document.querySelector('.mouse');
-        const homeSection = document.querySelector('#home');
-        if (mouseIcon && homeSection) {
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                mouseIcon.classList.remove('moved');
-              } else {
-                mouseIcon.classList.add('moved');
-              }
-            });
-          }, { threshold: 0.1 });
-          observer.observe(homeSection);
-        }
-
         const images = [
           "https://images.unsplash.com/photo-1509389928833-fe62aef36deb?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3",
           "https://images.unsplash.com/photo-1574360773950-133867861ae9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
@@ -278,59 +398,221 @@
         ];
 
         const mockTestimonials = [
-          { nome: 'João Silva', cidade: 'São Paulo', depoimento: 'Reduzi minha conta em 70%!', foto: 'https://via.placeholder.com/100' },
-          { nome: 'Maria Oliveira', cidade: 'Rio de Janeiro', depoimento: 'Serviço impecável!', foto: 'https://via.placeholder.com/100' },
-          { nome: 'Carlos Souza', cidade: 'Belo Horizonte', depoimento: 'Instalação rápida e eficiente.', foto: 'https://via.placeholder.com/100' }
+          { 
+            nome: 'João Silva', 
+            cidade: 'São Paulo', 
+            depoimento: 'Reduzi minha conta em 70%!', 
+            foto: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=100&auto=format&fit=crop' 
+          },
+          { 
+            nome: 'Maria Oliveira', 
+            cidade: 'Rio de Janeiro', 
+            depoimento: 'Serviço impecável!', 
+            foto: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&auto=format&fit=crop' 
+          },
+          { 
+            nome: 'Carlos Souza', 
+            cidade: 'Belo Horizonte', 
+            depoimento: 'Instalação rápida e eficiente.', 
+            foto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop' 
+          }
+        ];
+
+        const marcas = [
+          { 
+            nome: 'Jinko Solar', 
+            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Jinko_Solar_Logo.svg/200px-Jinko_Solar_Logo.svg.png' 
+          },
+          { 
+            nome: 'Canadian Solar', 
+            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Canadian_Solar_Logo.svg/200px-Canadian_Solar_Logo.svg.png' 
+          },
+          { 
+            nome: 'Trina Solar', 
+            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Trina_Solar_Logo.svg/200px-Trina_Solar_Logo.svg.png' 
+          },
+          { 
+            nome: 'Longi', 
+            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/LONGi_Solar_Logo.svg/200px-LONGi_Solar_Logo.svg.png' 
+          }
+        ];
+
+        const galeria = [
+          { 
+            nome: 'Residência SP', 
+            imagem: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600&auto=format&fit=crop' 
+          },
+          { 
+            nome: 'Fazenda MG', 
+            imagem: 'https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=600&auto=format&fit=crop' 
+          },
+          { 
+            nome: 'Empresa RJ', 
+            imagem: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop' 
+          }
+        ];
+
+        const bancos = [
+          { nome: 'Banco do Brasil', logo: 'lg-banco-do-brasil' },
+          { nome: 'Santander', logo: 'lg-santander' },
+          { nome: 'Caixa', logo: 'lg-caixa' },
+          { nome: 'Bradesco', logo: 'lg-bradesco' },
+          { nome: 'Itaú', logo: 'lg-itau' }
         ];
 
         function Header() {
           const [isOpen, setIsOpen] = React.useState(false);
+          const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
+
           return React.createElement(
-            'header',
-            { className: 'navbar is-fixed-top has-background-success-dark has-text-white' },
+            'nav',
+            { className: `navbar is-transparent is-success-dark is-fixed-top ${isOpen ? 'is-active' : ''}` },
             React.createElement(
               'div',
-              { className: 'container' },
+              { className: 'navbar-brand' },
+              React.createElement(
+                'a',
+                { className: 'navbar-item', href: '#home' },
+                React.createElement(
+                  'svg',
+                  { className: 'logo-svg', role: 'img', 'aria-label': 'logo ecosolares' },
+                  React.createElement('use', { xlinkHref: './logos.svg#lg-eco' })
+                ),
+                React.createElement('span', { className: 'brand-text' }, 'ecosolares')
+              ),
               React.createElement(
                 'div',
-                { className: 'navbar-brand' },
+                {
+                  className: `navbar-burger js-burger ${isOpen ? 'is-active' : ''}`,
+                  onClick: () => setIsOpen(!isOpen),
+                  'data-target': 'navbarMenu',
+                  'aria-label': 'menu',
+                  'aria-expanded': isOpen
+                },
+                React.createElement('span', null),
+                React.createElement('span', null),
+                React.createElement('span', null),
+                React.createElement('span', null)
+              )
+            ),
+            React.createElement(
+              'div',
+              { id: 'navbarMenu', className: `navbar-menu ${isOpen ? 'is-active' : ''}` },
+              React.createElement(
+                'div',
+                { className: 'navbar-start' },
                 React.createElement(
                   'a',
-                  { href: '#home', className: 'navbar-item' },
-                  React.createElement(
-                    'svg',
-                    { className: 'logo-svg', role: 'img', 'aria-label': 'logo ecosolares' },
-                    React.createElement('use', { xlinkHref: './logos.svg#lg-eco' })
-                  ),
-                  React.createElement('span', { className: 'brand-text' }, 'ecosolares')
+                  {
+                    className: 'navbar-item has-text-white is-uppercase has-text-weight-bold',
+                    href: '#home',
+                    onClick: () => setIsOpen(false)
+                  },
+                  'Home'
                 ),
                 React.createElement(
-                  'button',
+                  'div',
                   {
-                    className: `navbar-burger ${isOpen ? 'is-active' : ''}`,
-                    onClick: () => setIsOpen(!isOpen)
+                    className: `navbar-item has-dropdown ${isDropdownOpen ? 'is-active' : ''}`,
+                    onMouseEnter: () => setIsDropdownOpen(true),
+                    onMouseLeave: () => setIsDropdownOpen(false)
                   },
-                  React.createElement('span', null),
-                  React.createElement('span', null),
-                  React.createElement('span', null)
+                  React.createElement(
+                    'a',
+                    {
+                      className: 'navbar-link has-text-white is-uppercase has-text-weight-bold',
+                      href: '#sobre',
+                      onClick: () => setIsOpen(false)
+                    },
+                    'Sobre'
+                  ),
+                  React.createElement(
+                    'div',
+                    { className: 'navbar-dropdown is-boxed has-background-dark' },
+                    ['serviços', 'marcas', 'testemunhos', 'galeria', 'financiamento'].map((item) =>
+                      React.createElement(
+                        'a',
+                        {
+                          key: item,
+                          href: `#sobre-${item}`,
+                          className: 'navbar-item has-text-white',
+                          onClick: () => {
+                            setIsOpen(false);
+                            setIsDropdownOpen(false);
+                          }
+                        },
+                        item.charAt(0).toUpperCase() + item.slice(1)
+                      )
+                    ),
+                    React.createElement('hr', { className: 'navbar-divider' })
+                  )
+                ),
+                React.createElement(
+                  'a',
+                  {
+                    className: 'navbar-item has-text-white is-uppercase has-text-weight-bold',
+                    href: '#contato',
+                    onClick: () => setIsOpen(false)
+                  },
+                  'Contato'
                 )
               ),
               React.createElement(
                 'div',
-                { className: `navbar-menu ${isOpen ? 'is-active' : ''} has-background-success-dark` },
-                ['home', 'sobre', 'serviços', 'marcas', 'testemunhos', 'galeria', 'financiamento', 'contato'].map((item) =>
+                { className: 'navbar-end' },
+                React.createElement(
+                  'div',
+                  { className: 'navbar-item' },
                   React.createElement(
-                    'a',
-                    {
-                      key: item,
-                      href: `#${item}`,
-                      className: 'navbar-item has-text-white',
-                      onClick: () => setIsOpen(false)
-                    },
-                    item.charAt(0).toUpperCase() + item.slice(1)
+                    'div',
+                    { className: 'field is-grouped' },
+                    React.createElement(
+                      'p',
+                      { className: 'control' },
+                      React.createElement(
+                        'a',
+                        {
+                          className: 'button is-dark',
+                          href: 'https://x.com', // Substitua pelo seu URL real
+                          target: '_blank',
+                          rel: 'noopener noreferrer'
+                        },
+                        React.createElement(
+                          'span',
+                          { className: 'icon' },
+                          React.createElement(
+                            'svg',
+                            { className: 'social-svg' },
+                            React.createElement('use', { xlinkHref: './logos.svg#x' })
+                          )
+                        )
+                      )
+                    ),
+                    React.createElement(
+                      'p',
+                      { className: 'control' },
+                      React.createElement(
+                        'a',
+                        {
+                          className: 'button is-dark',
+                          href: 'https://t.me', // Substitua pelo seu URL real
+                          target: '_blank',
+                          rel: 'noopener noreferrer'
+                        },
+                        React.createElement(
+                          'span',
+                          { className: 'icon' },
+                          React.createElement(
+                            'svg',
+                            { className: 'social-svg' },
+                            React.createElement('use', { xlinkHref: './logos.svg#telegram' })
+                          )
+                        )
+                      )
+                    )
                   )
                 )
-              )
+              )              
             )
           );
         }
@@ -413,13 +695,14 @@
           const [bgImage, setBgImage] = React.useState('');
 
           React.useEffect(() => {
-            const initializeSwiper = () => {
+            const initializeSwipers = () => {
               try {
-                const swiperElement = document.querySelector('.swiper');
-                if (!swiperElement) {
-                  throw new Error('Elemento .swiper não encontrado no DOM');
+                // Swiper para testemunhos
+                const swiperTestemunhos = document.querySelector('.swiper-testemunhos');
+                if (!swiperTestemunhos) {
+                  throw new Error('Elemento .swiper-testemunhos não encontrado no DOM');
                 }
-                const swiper = new Swiper('.swiper', {
+                new Swiper('.swiper-testemunhos', {
                   loop: true,
                   autoplay: { delay: 3000 },
                   slidesPerView: 1,
@@ -429,16 +712,46 @@
                     1024: { slidesPerView: 3 }
                   }
                 });
-                console.log('Swiper inicializado com sucesso');
-                return swiper;
+
+                // Swiper para bancos
+                const swiperBancos = document.querySelector('.swiper-bank');
+                if (!swiperBancos) {
+                  throw new Error('Elemento .swiper-bank não encontrado no DOM');
+                }
+                new Swiper('.swiper-bank', {
+                  loop: true,
+                  autoplay: { delay: 4000 },
+                  slidesPerView: 1,
+                  spaceBetween: 10,
+                  breakpoints: {
+                    640: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 }
+                  }
+                });
+
+                console.log('Swipers inicializados com sucesso');
+                console.log('Verificando .mouse:', document.querySelector('#home .mouse'));
+
+                // IntersectionObserver para .mouse
+                const mouse = document.querySelector('#home .mouse');
+                if (mouse) {
+                  const homeSection = document.querySelector('#home');
+                  const observer = new IntersectionObserver(
+                    ([entry]) => {
+                      mouse.style.opacity = entry.isIntersecting ? '1' : '0';
+                    },
+                    { threshold: 0.1 }
+                  );
+                  observer.observe(homeSection);
+                }
               } catch (error) {
-                console.error('Erro ao inicializar Swiper:', error);
+                console.error('Erro ao inicializar Swipers:', error);
               }
             };
 
             const randomImage = images[Math.floor(Math.random() * images.length)];
             setBgImage(randomImage);
-            initializeSwiper();
+            initializeSwipers();
 
             return () => {};
           }, []);
@@ -485,214 +798,149 @@
                 React.createElement('h2', { className: 'title is-size-3 has-text-centered has-text-green fade-in' }, 'Sobre Nós'),
                 React.createElement(
                   'div',
-                  { className: 'columns' },
+                  { className: 'content has-text-centered mb-5' },
+                  React.createElement('p', { className: 'is-size-5' }, 'Somos líderes em energia solar, oferecendo soluções sustentáveis desde 2010.'),
                   React.createElement(
                     'div',
-                    { className: 'column is-6' },
-                    React.createElement('p', { className: 'is-size-5' }, 'Somos líderes em energia solar, oferecendo soluções sustentáveis desde 2010.')
-                  ),
+                    { className: 'buttons is-centered' },
+                    ['serviços', 'marcas', 'testemunhos', 'galeria', 'financiamento'].map((item) =>
+                      React.createElement(
+                        'a',
+                        { key: item, href: `#sobre-${item}`, className: 'button is-warning is-medium' },
+                        item.charAt(0).toUpperCase() + item.slice(1)
+                      )
+                    )
+                  )
+                ),
+                React.createElement(
+                  'div',
+                  { id: 'sobre-servicos', className: 'mb-6' },
+                  React.createElement('h3', { className: 'title is-size-4 has-text-centered has-text-green' }, 'Nossos Serviços'),
                   React.createElement(
                     'div',
-                    { className: 'column is-6' },
-                    React.createElement(
-                      'div',
-                      { className: 'columns' },
+                    { className: 'columns' },
+                    ['Instalação', 'Manutenção', 'Consultoria'].map((servico) =>
                       React.createElement(
                         'div',
-                        { className: 'column' },
+                        { key: servico, className: 'column' },
                         React.createElement(
                           'div',
                           { className: 'card' },
                           React.createElement(
                             'div',
                             { className: 'card-content has-text-centered' },
-                            React.createElement('p', { className: 'title is-size-5 has-text-weight-bold has-text-warning' }, '500+'),
-                            React.createElement('p', null, 'Projetos Concluídos')
+                            React.createElement('h4', { className: 'title is-size-5 has-text-weight-bold has-text-green' }, servico),
+                            React.createElement('p', { className: 'is-size-6' }, 'Serviço de alta qualidade para sistemas solares.'),
+                            React.createElement('p', null, React.createElement('a', { href: '#contato', className: 'has-text-warning' }, 'Saiba mais'))
                           )
                         )
-                      ),
+                      )
+                    )
+                  )
+                ),
+                React.createElement(
+                  'div',
+                  { id: 'sobre-marcas', className: 'mb-6' },
+                  React.createElement('h3', { className: 'title is-size-4 has-text-centered has-text-green' }, 'Nossas Marcas'),
+                  React.createElement(
+                    'div',
+                    { className: 'columns' },
+                    marcas.map((marca) =>
                       React.createElement(
                         'div',
-                        { className: 'column' },
+                        { key: marca.nome, className: 'column' },
                         React.createElement(
                           'div',
                           { className: 'card' },
                           React.createElement(
                             'div',
                             { className: 'card-content has-text-centered' },
-                            React.createElement('p', { className: 'title is-size-5 has-text-weight-bold has-text-warning' }, '10 MW'),
-                            React.createElement('p', null, 'Potência Instalada')
+                            React.createElement('img', { src: marca.logo, alt: marca.nome, className: 'image is-64x64 mx-auto mb-3' }),
+                            React.createElement('p', { className: 'is-size-6' }, marca.nome)
                           )
                         )
                       )
                     )
                   )
-                )
-              )
-            ),
-            React.createElement(
-              'section',
-              { id: 'servicos', className: 'section' },
-              React.createElement(
-                'div',
-                { className: 'container' },
-                React.createElement('h2', { className: 'title is-size-3 has-text-centered has-text-green fade-in' }, 'Nossos Serviços'),
+                ),
                 React.createElement(
                   'div',
-                  { className: 'columns' },
-                  ['Instalação', 'Manutenção', 'Consultoria'].map((servico) =>
-                    React.createElement(
-                      'div',
-                      { key: servico, className: 'column' },
-                      React.createElement(
-                        'div',
-                        { className: 'card' },
-                        React.createElement(
-                          'div',
-                          { className: 'card-content has-text-centered' },
-                          React.createElement('h3', { className: 'title is-size-5 has-text-weight-bold has-text-green' }, servico),
-                          React.createElement('p', { className: 'is-size-6' }, 'Serviço de alta qualidade para sistemas solares.'),
-                          React.createElement('p', null, React.createElement('a', { href: '#contato', className: 'has-text-warning' }, 'Saiba mais'))
-                        )
-                      )
-                    )
-                  )
-                )
-              )
-            ),
-            React.createElement(
-              'section',
-              { id: 'marcas', className: 'section' },
-              React.createElement(
-                'div',
-                { className: 'container' },
-                React.createElement('h2', { className: 'title is-size-3 has-text-centered has-text-green fade-in' }, 'Nossas Marcas'),
-                React.createElement(
-                  'div',
-                  { className: 'columns' },
-                  ['Jinko Solar', 'Canadian Solar', 'Trina Solar', 'Longi'].map((marca) =>
-                    React.createElement(
-                      'div',
-                      { key: marca, className: 'column' },
-                      React.createElement(
-                        'div',
-                        { className: 'card' },
-                        React.createElement(
-                          'div',
-                          { className: 'card-content has-text-centered' },
-                          React.createElement('img', { src: 'https://via.placeholder.com/100?text=Marca', alt: marca, className: 'image is-64x64 mx-auto mb-3' }),
-                          React.createElement('p', { className: 'is-size-6' }, marca)
-                        )
-                      )
-                    )
-                  )
-                )
-              )
-            ),
-            React.createElement(
-              'section',
-              { id: 'testemunhos', className: 'section' },
-              React.createElement(
-                'div',
-                { className: 'container' },
-                React.createElement('h2', { className: 'title is-size-3 has-text-centered has-text-green fade-in' }, 'O que dizem nossos clientes'),
-                React.createElement(
-                  'div',
-                  { className: 'swiper' },
+                  { id: 'sobre-testemunhos', className: 'mb-6' },
+                  React.createElement('h3', { className: 'title is-size-4 has-text-centered has-text-green' }, 'O que dizem nossos clientes'),
                   React.createElement(
                     'div',
-                    { className: 'swiper-wrapper' },
-                    mockTestimonials.map((t, i) =>
-                      React.createElement(
-                        'div',
-                        { key: i, className: 'swiper-slide' },
+                    { className: 'swiper swiper-testemunhos' },
+                    React.createElement(
+                      'div',
+                      { className: 'swiper-wrapper' },
+                      mockTestimonials.map((t, i) =>
                         React.createElement(
                           'div',
-                          { className: 'card' },
+                          { key: i, className: 'swiper-slide' },
                           React.createElement(
                             'div',
-                            { className: 'card-content' },
-                            React.createElement('img', { src: t.foto, alt: t.nome, className: 'image is-64x64 is-rounded mx-auto mb-3' }),
-                            React.createElement('p', { className: 'content is-italic' }, `"${t.depoimento}"`),
-                            React.createElement('p', { className: 'is-size-6 has-text-right has-text-weight-bold' }, `${t.nome}, ${t.cidade}`)
+                            { className: 'card' },
+                            React.createElement(
+                              'div',
+                              { className: 'card-content' },
+                              React.createElement('img', { src: t.foto, alt: t.nome, className: 'image is-64x64 is-rounded mx-auto mb-3' }),
+                              React.createElement('p', { className: 'content is-italic' }, `"${t.depoimento}"`),
+                              React.createElement('p', { className: 'is-size-6 has-text-right has-text-weight-bold' }, `${t.nome}, ${t.cidade}`)
+                            )
                           )
                         )
                       )
                     )
                   )
-                )
-              )
-            ),
-            React.createElement(
-              'section',
-              { id: 'galeria', className: 'section' },
-              React.createElement(
-                'div',
-                { className: 'container' },
-                React.createElement('h2', { className: 'title is-size-3 has-text-centered has-text-green fade-in' }, 'Galeria de Projetos'),
+                ),
                 React.createElement(
                   'div',
-                  { className: 'columns' },
-                  ['Residência SP', 'Fazenda MG', 'Empresa RJ'].map((projeto) =>
-                    React.createElement(
-                      'div',
-                      { key: projeto, className: 'column' },
+                  { id: 'sobre-galeria', className: 'mb-6' },
+                  React.createElement('h3', { className: 'title is-size-4 has-text-centered has-text-green' }, 'Galeria de Projetos'),
+                  React.createElement(
+                    'div',
+                    { className: 'magazine-grid' },
+                    galeria.map((projeto) =>
                       React.createElement(
                         'div',
-                        { className: 'card' },
-                        React.createElement(
-                          'div',
-                          { className: 'card-image' },
-                          React.createElement(
-                            'figure',
-                            { className: 'image is-3by2' },
-                            React.createElement('img', { src: 'https://via.placeholder.com/300x200?text=Projeto', alt: projeto })
-                          )
-                        ),
-                        React.createElement(
-                          'div',
-                          { className: 'card-content' },
-                          React.createElement('p', { className: 'is-size-6 has-text-centered' }, projeto)
-                        )
+                        { key: projeto.nome, className: 'magazine-item' },
+                        React.createElement('img', { src: projeto.imagem, alt: projeto.nome, className: 'magazine-image' }),
+                        React.createElement('div', { className: 'magazine-text' }, projeto.nome)
                       )
                     )
                   )
-                )
-              )
-            ),
-            React.createElement(
-              'section',
-              { id: 'financiamento', className: 'section' },
-              React.createElement(
-                'div',
-                { className: 'container' },
-                React.createElement('h2', { className: 'title is-size-3 has-text-centered has-text-green fade-in' }, 'Financiamento'),
-                React.createElement('p', { className: 'subtitle is-size-5 has-text-centered mb-4' }, 'Parcerias com bancos para facilitar sua instalação solar.'),
+                ),
                 React.createElement(
                   'div',
-                  { className: 'columns' },
-                  [
-                    { nome: 'Banco do Brasil', logo: 'lg-banco-do-brasil' },
-                    { nome: 'Santander', logo: 'lg-santander' },
-                    { nome: 'Caixa', logo: 'lg-caixa' }
-                  ].map((banco) =>
+                  { id: 'sobre-financiamento', className: 'mb-6' },
+                  React.createElement('h3', { className: 'title is-size-4 has-text-centered has-text-green' }, 'Financiamento'),
+                  React.createElement('p', { className: 'subtitle is-size-5 has-text-centered mb-4' }, 'Parcerias com bancos para facilitar sua instalação solar.'),
+                  React.createElement(
+                    'div',
+                    { className: 'swiper swiper-bank' },
                     React.createElement(
                       'div',
-                      { key: banco.nome, className: 'column' },
-                      React.createElement(
-                        'div',
-                        { className: 'card' },
+                      { className: 'swiper-wrapper' },
+                      bancos.map((banco) =>
                         React.createElement(
                           'div',
-                          { className: 'card-content has-text-centered' },
+                          { key: banco.nome, className: 'swiper-slide' },
                           React.createElement(
-                            'svg',
-                            { className: 'bank-logo', role: 'img', 'aria-label': `logo ${banco.nome.toLowerCase()}` },
-                            React.createElement('use', { xlinkHref: `./logos.svg#${banco.logo}` })
-                          ),
-                          React.createElement('p', { className: 'is-size-6 mt-3' }, banco.nome),
-                          React.createElement('p', { className: 'is-size-7' }, 'Taxa: 1,2% a.m.'),
-                          React.createElement('p', null, React.createElement('a', { href: '#', className: 'has-text-warning' }, 'Saiba mais'))
+                            'div',
+                            { className: 'card' },
+                            React.createElement(
+                              'div',
+                              { className: 'card-content has-text-centered' },
+                              React.createElement(
+                                'svg',
+                                { className: 'bank-logo', role: 'img', 'aria-label': `logo ${banco.nome.toLowerCase()}` },
+                                React.createElement('use', { xlinkHref: `./logos.svg#${banco.logo}` })
+                              ),
+                              React.createElement('p', { className: 'is-size-6 mt-3' }, banco.nome),
+                              React.createElement('p', { className: 'is-size-7' }, 'Taxa: 1,2% a.m.'),
+                              React.createElement('p', null, React.createElement('a', { href: '#', className: 'has-text-warning' }, 'Saiba mais'))
+                            )
+                          )
                         )
                       )
                     )
@@ -709,10 +957,10 @@
                 React.createElement('h2', { className: 'title is-size-3 has-text-centered has-text-green fade-in' }, 'Contato'),
                 React.createElement(
                   'div',
-                  { className: 'columns' },
+                  { className: 'columns is-flex contact-columns' },
                   React.createElement(
                     'div',
-                    { className: 'column is-6' },
+                    { className: 'column is-6 contact-column' },
                     React.createElement(
                       'div',
                       { className: 'card' },
@@ -773,11 +1021,10 @@
                   ),
                   React.createElement(
                     'div',
-                    { className: 'column is-6' },
+                    { className: 'column is-6 contact-column' },
                     React.createElement('iframe', {
                       src: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.123456789!2d-46.633308!3d-23.550520!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59a8c0c!2sSão%20Paulo%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v1631234567890',
-                      className: 'is-fullwidth',
-                      style: { height: '256px', borderRadius: '8px' },
+                      className: 'contact-map',
                       allowFullScreen: '',
                       loading: 'lazy'
                     }),
@@ -815,7 +1062,7 @@
                     React.createElement(
                       'ul',
                       null,
-                      ['home', 'sobre', 'serviços', 'contato'].map((item) =>
+                      ['home', 'sobre', 'contato'].map((item) =>
                         React.createElement('li', { key: item }, React.createElement('a', { href: `#${item}`, className: 'has-text-grey-lighter' }, item.charAt(0).toUpperCase() + item.slice(1)))
                       )
                     )
@@ -830,9 +1077,9 @@
                       'p',
                       { className: 'is-size-6 has-text-grey-lighter' },
                       'Redes: ',
-                      React.createElement('a', { href: '#', className: 'has-text-warning' }, 'Instagram'),
+                      React.createElement('a', { href: 'https://x.com', className: 'has-text-warning' }, 'X'),
                       ' | ',
-                      React.createElement('a', { href: '#', className: 'has-text-warning' }, 'WhatsApp')
+                      React.createElement('a', { href: 'https://t.me', className: 'has-text-warning' }, 'Telegram')
                     )
                   )
                 )
